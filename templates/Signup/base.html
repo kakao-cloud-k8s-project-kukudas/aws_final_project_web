@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>회원 가입</title>
+</head>
+<body>
+    <form action="getPost" method="post">
+        {% csrf_token %}
+        <input name="company_name" placeholder="회사 이름">
+        <input name="pw" placeholder="비밀번호">
+        <input name="worker_min" placeholder="워커 노드 최소 갯수">
+        <input name="worker_max" placeholder="워커 노드 최대 갯수">
+        <input name="pod_min" placeholder="포드 최소 갯수">
+        <input name="pod_max" placeholder="포드 최대 갯수">
+        <button>등록 하기</button>
+    </form>
+</body>
+</html>
