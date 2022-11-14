@@ -13,6 +13,10 @@
 - 회원가입
 - DB Schema
 - Web Form
+- DashBoard (Moddle, Grafana Monitoring)
+- AWS RDS 구성
+- AWS 인스턴스 배포
+- AWS EKS를 통한 WEB 배포
 
 ## 부가 기능
 - celery 적용
