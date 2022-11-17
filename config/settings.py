@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "Signup",
-    "Signin"
+    "Account",
+    "home"
 ]
 
 MIDDLEWARE = [
@@ -81,10 +81,10 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        'NAME': 'djangoDB',
-	    'USER': 'admin',
-	    'PASSWORD':'',
-	    'HOST':'',
+        'NAME': 'django',
+	    'USER': 'root',
+	    'PASSWORD':'test1234',
+	    'HOST':'localhost',
 	    'PORT':'3306',
 	    'OPTIONS':{
 		'init_command':'SET sql_mode="STRICT_TRANS_TABLES"'

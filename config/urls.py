@@ -3,11 +3,12 @@ from django.urls import path
 from django.conf.urls import include
 
 
-import Signup.views
+import Account.views
+import home.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("signup/input", Signup.views.base),
-    path("signup/getPost", Signup.views.getPost),
-    path('signin/', include('Signin.urls')),
+    path("home", home.views.home),
+    path("account/signup", Account.views.signup),
+    path("account/signin", Account.views.signin),
+    path("account/signout", Account.views.signout)
 ]
