@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="Signin">
+        <h3>로그인</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for form in forms %}
+            <div>
+                {{ form }}
+            </div>
+            {% endfor %}
+            {% if error %}
+            {{ error }}
+            {% endif %}
+            <button type="submit" name="signin-submit" value="signin">로그인</button>        
+        </form>
+    </div>
+     
+</body>
+</html>
