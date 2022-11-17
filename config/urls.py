@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-import Signup.views
-
+import Account.views
 urlpatterns = [
-    path("signup/input", Signup.views.base),
-    path("signup/getPost", Signup.views.getPost)
+    path("account/", Account.views.signup),
 ]

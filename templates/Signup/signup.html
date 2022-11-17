@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="Signup">
+        <h3>회원가입</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for form in forms %}
+            <div>
+                <label for="{{ form.id }}">{{ form.label }}</label>
+                {{ form }}
+            </div>
+            {% endfor %}
+            {% for form in forms %}
+            {{ form.errors }}
+            {% endfor %}
+            <button type="submit" name="signup-submit" value="signup">회원 가입</button>
+        
+        </form>
+    </div>
+     
+</body>
+</html>
