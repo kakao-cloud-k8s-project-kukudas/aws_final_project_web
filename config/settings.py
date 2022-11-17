@@ -130,6 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+# EC2 인스턴스 배포로 인한 추가 22.11.17
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS=[
     BASE_DIR / 'static',
 ]
