@@ -20,7 +20,7 @@ def signup(request):
                 pw=signup_form.password
             )
             user.save()
-            return redirect('/account/')
+            return redirect('/home')
         else:
             context['forms']=signup_form
             if signup_form.errors:
@@ -36,7 +36,10 @@ def signin(request):
     elif request.method=='POST':
         signin_form=SigninForm(request.POST)
         if signin_form.is_valid():
-            return redirect('/account/')
+            # 세션 관리
+            request.session['login_session']=signin_form.login_session
+            request.session.set_expiry(0) # 브라우저 창 닫으면 삭제되기, 14일 보관
+            return redirect('/home')
         else:
             context['forms']=signin_form
             if signin_form.errors:
@@ -44,3 +47,6 @@ def signin(request):
                     context['error']=value
         return render(request, 'account/signin.html', context)  
 # 로그아웃
+def signout(request):
+    request.session.flush()
+    return redirect('/home')

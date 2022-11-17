@@ -114,4 +114,4 @@ class SigninForm(forms.Form):
                 return self.add_error('company_name', '회사가 존재하지 않습니다.')
             if not bcrypt.checkpw(password.encode('utf-8'), user.pw.encode('utf-8')):
                 return self.add_error('password','비밀번호가 다릅니다.')
-    
+            self.login_session=user.company_name
