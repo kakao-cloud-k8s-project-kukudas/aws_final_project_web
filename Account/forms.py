@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User_info
 import bcrypt, json, re
 
 
@@ -44,7 +44,7 @@ class SignupForm(forms.ModelForm):
         'password_confirm'
     ]
     class Meta:
-        model=User
+        model=User_info
         fields=[ # DB 입력받을 field
             'company_name',
             'password'
@@ -56,7 +56,7 @@ class SignupForm(forms.ModelForm):
         password=cleaned_data.get('password','')
         password_confirm=cleaned_data.get('password_confirm','')
         # 비밀번호 검사/ 아이디 중복 검사
-        if User.objects.filter(company_name=company_name).exists():
+        if User_info.objects.filter(company_name=company_name).exists():
             return self.add_error('company_name','이미 있는 아이디 입니다.')
         if password!=password_confirm:
             return self.add_error('password_confirm','비밀번호가 다릅니다.')
@@ -109,8 +109,8 @@ class SigninForm(forms.Form):
             return self.add_error('password','비밀번호를 다시 입력해주세요')
         else:
             try:
-                user=User.objects.get(company_name=company_name)
-            except User.DoesNotExist:
+                user=User_info.objects.get(company_name=company_name)
+            except User_info.DoesNotExist:
                 return self.add_error('company_name', '회사가 존재하지 않습니다.')
             if not bcrypt.checkpw(password.encode('utf-8'), user.pw.encode('utf-8')):
                 return self.add_error('password','비밀번호가 다릅니다.')

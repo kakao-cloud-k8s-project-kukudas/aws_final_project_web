@@ -93,7 +93,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         'NAME': 'django',
 	    'USER': 'root',
-	    'PASSWORD':'test1234',
+	    'PASSWORD':'970509',
 	    'HOST':'localhost',
 	    'PORT':'3306',
 	    'OPTIONS':{
@@ -151,3 +151,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # LOGIN SUCCESS URL
 LOGIN_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'Account.User'

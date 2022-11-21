@@ -1,7 +1,12 @@
 from django.db import models
 import datetime
 # Create your models here.
-class User(models.Model):
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
+
+class User_info(models.Model):
     id = models.AutoField(primary_key = True)
     company_name = models.CharField(max_length=100)
     date=models.CharField(max_length=100)
@@ -11,5 +16,3 @@ class User(models.Model):
     pod_min = models.CharField(max_length=100)
     pod_max = models.CharField(max_length=100)
     lb_address = models.CharField(null = True, max_length=100)
-    class Meta:
-        db_table=''
