@@ -17,19 +17,13 @@ def home(request):
     return render(request, 'home/home.html', context)
 
 # ssh connect -> 클러스터 생성
+# 추가 예정 사항 : DB에 생성일자 update, 쉘 파일 실행 시 생성일자 인자로 전달하기
 def create(request):
 # 변수 선언
     context={}
-#     login_session=request.session.get('login_session','')
 
 # 생성하는 Date
     date = DateFormat(datetime.now()).format('Ymd')
-
-# login session 확인
-#     if login_session=='':
-#         context['login_session']=False
-#     else:
-#         context['login_session']=True
 
 # 로그인 세션 유지 시 SSH 접속 -> 클러스터 생성
     cli = paramiko.SSHClient()
@@ -49,7 +43,7 @@ def create(request):
 
     return render(request, 'home/home.html', context)
 
-# ssh connect -> 클러스터 삭제
+# ssh connect -> 클러스터 삭제 ** 미완성 **
 def delete(request):
 # 변수 선언
     context={}
@@ -74,7 +68,7 @@ def delete(request):
         pwd = "test123"
 # SSH Connect
         cli.connect(server, port=22, username=user, password=pwd)
-# SSH 내의 Shell 실행
+# SSH 내의 Shell 실행 : 수정 필요
         stdin, stdout, stderr = cli.exec_command("cd /root/aws_final_project/terraform/11181923 && terraform destroy -auto-approve && rm -rf ../11181923")
         lines = stdout.readlines()
         print(''.join(lines))
