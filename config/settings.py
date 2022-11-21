@@ -33,6 +33,12 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 
+# add celery config
+CELERY_BROKER_URL='redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT=['application/json']
+CELERY_RESULT_SERIALIZER='json'
+CERELY_TASK_SERIALIZER='json'
+CELERY_RESULT_BACKEND='django-db'
 
 # Application definition
 
@@ -44,7 +50,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "Account",
-    "home"
+    "home",
+    "django_celery_results"
 ]
 
 MIDDLEWARE = [
