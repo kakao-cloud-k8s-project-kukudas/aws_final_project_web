@@ -4,7 +4,7 @@ import datetime
 class User(models.Model):
     id = models.AutoField(primary_key = True)
     company_name = models.CharField(max_length=100)
-    date=models.DateTimeField('date published', default=datetime.datetime.now, editable=False)
+    date=models.CharField(max_length=100)
     pw=models.CharField(max_length=300) # 암호화로 인해 긺
     worker_min = models.CharField(max_length=100)
     worker_max = models.CharField(max_length=100)

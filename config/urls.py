@@ -10,5 +10,7 @@ urlpatterns = [
     path("home", home.views.home),
     path("account/signup", Account.views.signup),
     path("account/signin", Account.views.signin),
-    path("account/signout", Account.views.signout)
+    path("account/signout", Account.views.signout),
+    path("home/create", home.views.create),
+    path("home/delete", home.views.delete),
 ]

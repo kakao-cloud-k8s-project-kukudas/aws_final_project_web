@@ -7,7 +7,11 @@
 <body>
     <h1>Moodle 만들기</h1>
     {% if login_session %}
+    <h2>회사명</h2>
     <a href="/account/signout"><button>로그아웃</button></a>
+    <br>
+    <a onclick="return confirm('생성하시겠습니까?');" href="/home/create"><button>생성하기</button></a>
+    <a onclick="return confirm('삭제하시겠습니까?');" href="/home/delete"><button>삭제하기</button></a>
     {% else %}
     <a href="/account/signin"><button>로그인</button></a>
     <a href="/account/signup"><button>회원가입</button></a>
