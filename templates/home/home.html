@@ -7,7 +7,11 @@
 <body>
     <h1>Moodle 만들기</h1>
     {% if login_session %}
-    <h2>회사명</h2>
+
+    {% if user.is_authenticated %}
+        <p>{{request.user.username}} 님 안녕하세요! </p>
+    {% endif %}
+
     <a href="/account/signout"><button>로그아웃</button></a>
     <br>
     <a onclick="return confirm('생성하시겠습니까?');" href="/home/create"><button>생성하기</button></a>
