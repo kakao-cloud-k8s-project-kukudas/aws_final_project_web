@@ -22,8 +22,17 @@ def create(request):
 # 변수 선언
     context={}
 
-# 생성하는 Date
+# 로그인 세션
+    login_session=request.session.get('login_session','')
+    if login_session=='':
+        context['login_session']=False
+    else:
+        context['login_session']=True
+
+# 생성일자
     date = DateFormat(datetime.now()).format('Ymd')
+
+# DB update : 생성일자 추가
 
 # 로그인 세션 유지 시 SSH 접속 -> 클러스터 생성
     cli = paramiko.SSHClient()
@@ -36,7 +45,8 @@ def create(request):
 # SSH Connect
     cli.connect(server, port=22, username=user, password=pwd)
 # SSH 내의 Shell 실행
-    stdin, stdout, stderr = cli.exec_command("/root/aws_final_project/terraform/terraform_made.sh")
+#     stdin, stdout, stderr = cli.exec_command("/root/aws_final_project/terraform/terraform_made.sh", date)
+    stdin, stdout, stderr = cli.exec_command("touch a.sh")
     lines = stdout.readlines()
     print(''.join(lines))
     cli.close()
