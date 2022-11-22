@@ -25,8 +25,8 @@ def signup(request):
 
             ## account user 테이블에 추가
             user = User.objects.create_user(
-                username=request.POST['company_name'],
-                password=request.POST['password']
+                username=signup_form.company_name,
+                password=signup_form.password
             )
             auth.login(request, user)
 
