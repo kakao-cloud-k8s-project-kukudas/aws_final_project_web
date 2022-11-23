@@ -15,6 +15,17 @@ class SignupForm(forms.ModelForm):
         ),
         error_messages={'required': '회사 이름을 입력해주세요'}
     )
+    company_initial = forms.CharField(
+        label='이니셜',
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'company_initial',
+                'placeholder': '이니셜'
+            }
+        ),
+        error_messages={'required': '이니셜을 입력해주세요'}
+    )
     password=forms.CharField(
         label='비밀번호',
         required=True,
@@ -40,6 +51,7 @@ class SignupForm(forms.ModelForm):
     # 입력받을 순서 정하기
     field_order=[
         'company_name',
+        'company_initial',
         'password',
         'password_confirm'
     ]
@@ -47,23 +59,30 @@ class SignupForm(forms.ModelForm):
         model=User_info
         fields=[ # DB 입력받을 field
             'company_name',
+            'company_initial',
             'password'
         ]
     # is valid 실행시 호출되는 메소드
     def clean(self):
         cleaned_data=super().clean()
         company_name=cleaned_data.get('company_name','')
+        company_initial=cleaned_data.get('company_initial','')
         password=cleaned_data.get('password','')
         password_confirm=cleaned_data.get('password_confirm','')
         # 비밀번호 검사/ 아이디 중복 검사
         if User_info.objects.filter(company_name=company_name).exists():
             return self.add_error('company_name','이미 있는 아이디 입니다.')
+        if User_info.objects.filter(company_initial=company_initial).exists():
+            return self.add_error('company_initial','이미 있는 이니셜 입니다.')
+        elif 4<len(company_initial):
+            return self.add_error('company_initial','이니셜은 3자 이하로 적어주세요')
         if password!=password_confirm:
             return self.add_error('password_confirm','비밀번호가 다릅니다.')
         elif 8>len(password):
             return self.add_error('password','비밀번호는 8자 이상으로 적어주세요')
         else:
             self.company_name=company_name
+            self.company_initial=company_initial
             # 비밀번호 암호화, DB에는 문자열로 저장되어야 함으로 decode을 이용해 string으로 바꿔준다.
             self.password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
             self.password_confirm=password_confirm

@@ -9,6 +9,7 @@ class User(AbstractUser):
 class User_info(models.Model):
     id = models.AutoField(primary_key = True)
     company_name = models.CharField(max_length=100)
+    company_initial = models.CharField(max_length=3)
     date=models.CharField(max_length=100)
     pw=models.CharField(max_length=300) # 암호화로 인해 긺
     worker_min = models.CharField(max_length=100)
