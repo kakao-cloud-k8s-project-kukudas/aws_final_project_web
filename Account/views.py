@@ -19,6 +19,7 @@ def signup(request):
         if signup_form.is_valid():
             user=User_info(
                 company_name=signup_form.company_name,
+                company_initial=signup_form.company_initial,
                 pw=signup_form.password
             )
             user.save()
