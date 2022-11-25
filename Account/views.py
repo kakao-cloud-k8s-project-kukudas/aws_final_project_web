@@ -13,7 +13,7 @@ def signup(request):
     signup_form=SignupForm()
     context={'forms':signup_form}
     if request.method=='GET':
-        return render(request, 'account/signup.html', context)
+        return render(request, 'account/signup_bs.html', context)
     elif request.method=='POST':
         signup_form=SignupForm(request.POST)
         if signup_form.is_valid():
@@ -37,13 +37,13 @@ def signup(request):
             if signup_form.errors:
                 for value in signup_form.errors.values():
                     context['error']=value
-        return render(request, 'account/signup.html', context)    
+        return render(request, 'account/signup_bs.html', context)    
 # 로그인
 def signin(request):
     signin_form=SigninForm()
     context={'forms': signin_form }
     if request.method=='GET':
-        return render(request, 'account/signin.html', context)
+        return render(request, 'account/signin_bs.html', context)
     elif request.method=='POST':
         signin_form=SigninForm(request.POST)
         if signin_form.is_valid():
@@ -63,7 +63,7 @@ def signin(request):
             if signin_form.errors:
                 for value in signin_form.errors.values():
                     context['error']=value
-        return render(request, 'account/signin.html', context)
+        return render(request, 'account/signin_bs.html', context)
 # 로그아웃
 def signout(request):
     request.session.flush()
