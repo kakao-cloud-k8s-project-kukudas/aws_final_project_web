@@ -25,19 +25,23 @@ def home(request):
 # ssh connect -> 클러스터 생성
 # 추가 예정 사항 : DB에 생성일자 update, 쉘 파일 실행 시 생성일자 인자로 전달하기
 def create(request):
-    # 생성 일자
-    date = DateFormat(datetime.now()).format('mdHi')
-
-    # ssh 연결 taks는 config/tasks.py task_func에 작성
-    create_task.delay(date) # celery task 실행
-
-    # 생성 완료 시 접속한 사용사에 해당하는 DB 생성일자 Update
-    user_info_create = User_info.objects.get(company_name=request.user)
-    user_info_create.date = date
-    user_info_create.save()
-
     # 변수 선언
     context={}
+    # DB 조회
+    user_info_create = User_info.objects.get(company_name=request.user)
+    # 생성 일자
+    date = DateFormat(datetime.now()).format('Hi')
+    # 클러스터 이름 설정
+    cluster_name = user_info_create.company_initial + '_' + date
+    # ssh 연결 taks는 config/tasks.py task_func에 작성
+    user_info_create.date = date
+    user = user_info_create.company_name
+    user_info_create.save()
+
+    if user_info_create.cluster_exist == 0:
+        create_task.delay(cluster_name, user) # celery task 실행
+    else:
+        print("클러스터가 생성 중이거나 이미 생성됨") # <-- 앞단에서 설명 창이 있음 좋겠음
 
     # 로그인 세션
     login_session=request.session.get('login_session','')
@@ -46,16 +50,18 @@ def create(request):
     else:
         context['login_session']=True
 
-    # 클러스터 두번 생성 원인, render로 했을경우 새로고침 시 /home/create가 다시 불러와짐 
+    # 클러스터 두번 생성 원인, render로 했을경우 새로고침 시 /home/create가 다시 불러와짐
     return redirect('/home')
 
 # ssh connect -> 클러스터 삭제
 def delete(request):
     # 사용사에 해당하는 DB 생성일자 가져오기
     user_info_delete = User_info.objects.get(company_name=request.user)
-    delete_date = user_info_delete.date
+    cluster_name = user_info_delete.company_initial + '_' + user_info_delete.date
+    user = user_info_delete.company_name
 
-    # ssh 연결 taks는 config/tasks.py task_func에 작성
-    delete_task.delay(delete_date) # celery task 실행
-
+    if user_info_delete.cluster_exist == 1:
+        delete_task.delay(cluster_name, user)
+    else:
+        print("삭제 할 클러스터가 없습니다.") # <-- 앞단에서 설명 창이 있음 좋겠음
     return redirect('/home')
