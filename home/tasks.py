@@ -48,14 +48,15 @@ def ssh_connect(command_str, args=None):
         stdin, stdout, stderr = cli.exec_command(cmd_to_execute)
     else: # 없으면 없는 걸로 실행: 클러스터 삭제
         stdin, stdout, stderr = cli.exec_command(command_str)
+    lines = stdout.readlines()
 
     for line in lines:
         print(line)
-        # 클러스터 정상 생성 시
+        # 클러스터 정상 생성 시 -> SSH return 1 <-- 여기부터 확인
         if line == '10\n':
             print('Apply Success #1')
             return 1
-        # 클러스터 정상 삭제 시
+        # 클러스터 정상 삭제 시 -> SSH return 1
         elif line == '20\n':
             print('Destroy Success #1')
             return 1

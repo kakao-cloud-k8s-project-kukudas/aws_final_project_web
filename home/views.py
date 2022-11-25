@@ -34,11 +34,10 @@ def create(request):
     # 클러스터 이름 설정
     cluster_name = user_info_create.company_initial + '_' + date
     # ssh 연결 taks는 config/tasks.py task_func에 작성
-    user_info_create.date = date
-    user = user_info_create.company_name
-    user_info_create.save()
-
     if user_info_create.cluster_exist == 0:
+        user_info_create.date = date
+        user = user_info_create.company_name
+        user_info_create.save()
         create_task.delay(cluster_name, user) # celery task 실행
     else:
         print("클러스터가 생성 중이거나 이미 생성됨") # <-- 앞단에서 설명 창이 있음 좋겠음
