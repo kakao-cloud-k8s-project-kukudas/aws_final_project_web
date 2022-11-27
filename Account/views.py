@@ -17,21 +17,21 @@ def signup(request):
     elif request.method=='POST':
         signup_form=SignupForm(request.POST)
         if signup_form.is_valid():
-            user=User_info(
-                company_name=signup_form.company_name,
-                company_initial=signup_form.company_initial,
-                pw=signup_form.password
-            )
-            user.save()
-
             ## account user 테이블에 추가
+            # user/pw insert
             user = User.objects.create_user(
                 username=signup_form.company_name,
                 password=signup_form.password
             )
             auth.login(request, user)
-
-            return redirect('/home')
+            # user info insert
+            user = User_info(
+                company_name=signup_form.company_name,
+                password=signup_form.password,
+                company_initial=signup_form.company_initial
+            )
+            user.save()
+            return redirect('/account/signin')
         else:
             context['forms']=signup_form
             if signup_form.errors:

@@ -1,5 +1,5 @@
 from django import forms
-from .models import User_info
+from .models import User_info, User
 import bcrypt, json, re
 
 
@@ -70,7 +70,8 @@ class SignupForm(forms.ModelForm):
         password=cleaned_data.get('password','')
         password_confirm=cleaned_data.get('password_confirm','')
         # 비밀번호 검사/ 아이디 중복 검사
-        if User_info.objects.filter(company_name=company_name).exists():
+        # if User_info.objects.filter(company_name=company_name).exists():
+        if User.objects.filter(username=company_name).exists():
             return self.add_error('company_name','이미 있는 아이디 입니다.')
         if User_info.objects.filter(company_initial=company_initial).exists():
             return self.add_error('company_initial','이미 있는 이니셜 입니다.')
@@ -118,7 +119,6 @@ class SigninForm(forms.Form):
     # is valid 실행시 호출되는 메소드
     def clean(self):
         cleaned_data=super().clean()
-        
         company_name=cleaned_data.get('company_name','')
         password=cleaned_data.get('password','')
         # 빈칸인지 확인, db와 비교
@@ -131,6 +131,6 @@ class SigninForm(forms.Form):
                 user=User_info.objects.get(company_name=company_name)
             except User_info.DoesNotExist:
                 return self.add_error('company_name', '회사가 존재하지 않습니다.')
-            if not bcrypt.checkpw(password.encode('utf-8'), user.pw.encode('utf-8')):
+            if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
                 return self.add_error('password','비밀번호가 다릅니다.')
             self.login_session=user.company_name
