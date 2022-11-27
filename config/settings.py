@@ -93,7 +93,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         'NAME': 'django',
 	    'USER': 'root',
-	    'PASSWORD':'970509',
+	    'PASSWORD':'',
 	    'HOST':'localhost',
 	    'PORT':'3306',
 	    'OPTIONS':{
@@ -138,7 +138,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 # EC2 인스턴스 배포로 인한 추가 22.11.17 이유 : admin 과 같은 페이지 템플릿 불러오는거 당장 안씀
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS=[

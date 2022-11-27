@@ -23,7 +23,7 @@
 ## 부가 기능
 - celery 적용 (요청 응답, 백그라운드 테스크)
 
-## DB Schema [임시]
-<img width="698" alt="스크린샷 2022-11-14 오후 4 00 20" src="https://user-images.githubusercontent.com/70618223/201595336-c0334801-8ac6-4a29-8931-0740813015c2.png">
+## DB Schema
+<img width="636" alt="image" src="https://user-images.githubusercontent.com/70618223/203917608-0240a4b6-f237-4997-a1e1-8aa9dc357e1f.png">
 
-
+https://startbootstrap.com/previews/sb-admin

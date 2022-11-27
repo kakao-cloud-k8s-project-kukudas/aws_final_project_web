@@ -20,7 +20,7 @@ def home(request):
         context['login_session']=False
     else:
         context['login_session']=True
-    return render(request, 'home/home.html', context)
+    return render(request, 'home/home_bs.html', context)
 
 # ssh connect -> 클러스터 생성
 # 추가 예정 사항 : DB에 생성일자 update, 쉘 파일 실행 시 생성일자 인자로 전달하기
