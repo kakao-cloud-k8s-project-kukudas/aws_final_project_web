@@ -85,7 +85,7 @@ class SignupForm(forms.ModelForm):
             self.company_name=company_name
             self.company_initial=company_initial
             # 비밀번호 암호화, DB에는 문자열로 저장되어야 함으로 decode을 이용해 string으로 바꿔준다.
-            self.password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            # self.password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
             self.password_confirm=password_confirm
             
 # 왜 modelorm을 사용하지 않는지? model과 연동하지 않음으로
@@ -128,9 +128,10 @@ class SigninForm(forms.Form):
             return self.add_error('password','비밀번호를 다시 입력해주세요')
         else:
             try:
-                user=User_info.objects.get(company_name=company_name)
-            except User_info.DoesNotExist:
+                user=User.objects.get(username=company_name)
+            except User.DoesNotExist:
                 return self.add_error('company_name', '회사가 존재하지 않습니다.')
-            if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-                return self.add_error('password','비밀번호가 다릅니다.')
-            self.login_session=user.company_name
+            # 아래의 암호화 방식 사용하지 않음
+            # if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
+            #     return self.add_error('password','비밀번호가 다릅니다.')
+            self.login_session=user.username
