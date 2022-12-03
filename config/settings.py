@@ -92,12 +92,12 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         'NAME': 'django',
-	    'USER': 'root',
-	    'PASSWORD':'970509',
-	    'HOST':'localhost',
-	    'PORT':'3306',
-	    'OPTIONS':{
-		'init_command':'SET sql_mode="STRICT_TRANS_TABLES"'
+            'USER': 'admin',
+            'PASSWORD':'test1234',
+            'HOST':'django-mysql.cm78essrody9.ap-northeast-1.rds.amazonaws.com',
+            'PORT':'3306',
+            'OPTIONS':{
+                'init_command':'SET sql_mode="STRICT_TRANS_TABLES"'
         }
     }
 }
