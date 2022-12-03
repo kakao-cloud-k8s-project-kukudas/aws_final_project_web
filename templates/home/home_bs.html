@@ -15,7 +15,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3">Kukudas: moodle</a>
+            <a class="navbar-brand ps-3">Kukudas: 그룹웨어</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -91,7 +91,7 @@
                         <h1 class="mt-4">
                             {% if login_session %}
                             {% if user.is_authenticated %}
-                                {{request.user.username}} 님 안녕하세요! </p>
+                                {{request.user.username}} 님 안녕하세요!
                             {% else %}
                                안녕하세요
                             {% endif %}
@@ -100,118 +100,53 @@
                             {% endif %}
                         </h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Moodle</li>
+                            {% if login_session %}
+                                <li class="breadcrumb-item active">Moodle:&nbsp;</li>
+                                <a href="#" id="link">그룹웨어 접속</a>
+                            {% else %}
+                                <li class="breadcrumb-item active">Moodle</li>
+                            {% endif %}
+
                         </ol>
                         {% if login_session %}
                             <div class="row">
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-primary text-white mb-4">
-                                        <div class="card-body">생성하기</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" onclick="return confirm('생성하시겠습니까?');" href="/home/create">moodle을 생성합니다</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                <form>
+                                    {% csrf_token %}
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-primary text-white mb-4">
+                                            <div id="create" class="card-body">생성하기</div>
+                                                <button id="create_btn" type="submit" class="btn btn-primary" onclick="return confirm('생성하시겠습니까?');">moodle을 생성합니다</button>
+                                            </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-danger text-white mb-4">
+                                            <div id="delete" class="card-body">삭제하기</div>
+                                                <button id="delete_btn" type="submit"  class="btn btn-danger" onclick="return confirm('[경고] 삭제하시겠습니까?');" disabled>moodle을 삭제합니다</button>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6">
-                                    <div class="card bg-danger text-white mb-4">
-                                        <div class="card-body">삭제하기</div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small text-white stretched-link" onclick="return confirm('삭제하시겠습니까?');" href="/home/delete">moodle을 삭제합니다</a>
-                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         {% endif %}
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                  <div class="mt-5">
+                    <h2 class="title is-2">&nbsp;Tasks</h2>
+                    <br>
+                    <table class='table'>
+                      <thead>
+                        <tr>
+                          <th>Task ID</th>
+                          <th>Task state</th>
+                          <th>Task percentage %</th>
+                          <th>Task info</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                </div>
             </div>
-        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{% static 'js/scripts.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -219,5 +154,93 @@
         <script src="{% static 'assets/demo/chart-bar-demo.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+              $('#create_btn').click(function(e) {
+                e.preventDefault()
+                $.ajax({
+                  url: '/run-long-task/',
+                  type: 'POST',
+                  data: {
+                    l: 1,
+                    csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+                  }
+                })
+                .done((response) => {
+                  updateState(response.task_id)
+                })
+                .fail((error) => console.log(error))
+              })
+
+              $('#delete_btn').click(function(e) {
+                e.preventDefault()
+
+                $.ajax({
+                  url: '/run-long-task/',
+                  type: 'POST',
+                  data: {
+                    l: 2,
+                    csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+                  }
+                })
+                .done((response) => {
+                  updateState(response.task_id)
+                })
+                .fail((error) => console.log(error))
+              })
+
+              function updateState(taskID) {
+                $.ajax({
+                  url: `task-status/${taskID}/`,
+                  type: 'GET'
+                })
+                .done(response => {
+                  const data = `
+                    <th>${response.task_id}</th>
+                    <td>${response.state}</td>
+                    <td>${response.progression}</td>
+                    <td>${response.info}</td>
+                    `
+                  const tr = $('#' + response.task_id)
+                  // if the element exists, update it
+                  if (tr.length) {
+                    tr.html(data)
+                  }
+                  // otherwise, create a new row in the table
+                  else {
+                    const tableBody = `<tr id='${response.task_id}'>${data}</tr>`
+                    $('tbody').append(tableBody)
+                  }
+
+                  // task is finished
+                  // response 조건 추가할 것
+                  if (response.state == "SUCCESS" && response.info == "create") {
+                    document.getElementById("create").innerText = "생성됨";
+                    document.getElementById("delete_btn").removeAttribute("disabled");
+                  }
+                  else if (response.state == "PROGRESS" && response.info == "create") {
+                    document.getElementById("create").innerText = "생성중";
+                    document.getElementById("create_btn").setAttribute('disabled', 'disabled');
+                  }
+                  else if (response.state == "SUCCESS" && response.info == "delete") {
+                    document.getElementById("delete").innerText = "삭제됨";
+                    document.getElementById("create_btn").removeAttribute("disabled");
+                  }
+                  else if (response.state == "PROGRESS" && response.info == "delete") {
+                    document.getElementById("delete").innerText = "삭제중";
+                    document.getElementById("delete_btn").setAttribute('disabled', 'disabled');
+                  }
+
+                  if (response.state == "FAILURE" || response.state == "SUCCESS") {return false}
+                  // rerun every 2 seconds
+                  setTimeout(function() {
+                    updateState(response.task_id)
+                  }, 2000)
+                })
+                .fail(error => console.log(error))
+              }
+            })
+        </script>
     </body>
 </html>
