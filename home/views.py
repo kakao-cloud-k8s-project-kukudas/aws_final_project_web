@@ -75,10 +75,12 @@ def task_status(request, task_id):
     total = task.info.get('total', 1)
     progression = (int(current) / int(total)) * 100  # to display a percentage of progress of the task
     info = task.info.get('info')
+    lb_address = task.info.get('lb_address')
     response = {
         'task_id': task_id,
         'state': task.state,
         'progression': progression,
-        'info': info
+        'info': info,
+        'lb_address': lb_address
     }
     return JsonResponse(response, status=200)

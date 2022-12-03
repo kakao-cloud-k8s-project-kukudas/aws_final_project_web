@@ -213,11 +213,11 @@
                     $('tbody').append(tableBody)
                   }
 
-                  // task is finished
                   // response 조건 추가할 것
                   if (response.state == "SUCCESS" && response.info == "create") {
                     document.getElementById("create").innerText = "생성됨";
                     document.getElementById("delete_btn").removeAttribute("disabled");
+                    document.getElementById("link").href = response.lb_address
                   }
                   else if (response.state == "PROGRESS" && response.info == "create") {
                     document.getElementById("create").innerText = "생성중";
@@ -226,12 +226,12 @@
                   else if (response.state == "SUCCESS" && response.info == "delete") {
                     document.getElementById("delete").innerText = "삭제됨";
                     document.getElementById("create_btn").removeAttribute("disabled");
+                    document.getElementById('link').disabled = true;
                   }
                   else if (response.state == "PROGRESS" && response.info == "delete") {
                     document.getElementById("delete").innerText = "삭제중";
                     document.getElementById("delete_btn").setAttribute('disabled', 'disabled');
                   }
-
                   if (response.state == "FAILURE" || response.state == "SUCCESS") {return false}
                   // rerun every 2 seconds
                   setTimeout(function() {
