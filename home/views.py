@@ -6,6 +6,7 @@ from datetime import datetime
 from django.utils.dateformat import DateFormat
 # Account User DB import
 from Account.models import User_info
+
 # CELERY
 from .tasks import create_task, delete_task
 from django.http import JsonResponse
@@ -20,6 +21,12 @@ def home(request):
         context['login_session']=False
     else:
         context['login_session']=True
+    # 클러스터가 이미 있는 경우 DB 주소 주기
+    if request.user.is_authenticated:
+        moodle_addr = User_info.objects.get(company_name=request.user).lb_address
+        print(moodle_addr)
+        context['moodle_addr'] = moodle_addr
+
     return render(request, 'home/home_bs.html', context)
 
 # ssh connect -> 클러스터 생성
