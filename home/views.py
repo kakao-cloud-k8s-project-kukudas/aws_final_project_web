@@ -24,8 +24,11 @@ def home(request):
     # 클러스터가 이미 있는 경우 DB 주소 주기
     if request.user.is_authenticated:
         moodle_addr = User_info.objects.get(company_name=request.user).lb_address
+        grafana_addr = User_info.objects.get(company_name=request.user).grafana_address
         print(moodle_addr)
+        print(grafana_addr)
         context['moodle_addr'] = moodle_addr
+        context['grafana_addr'] = grafana_addr
 
     return render(request, 'home/home_bs.html', context)
 
@@ -41,7 +44,7 @@ def run_long_task(request):
             # 생성 일자
             date = DateFormat(datetime.now()).format('Hi')
             # 클러스터 이름 설정
-            cluster_name = user_info_create.company_initial + '_' + date
+            cluster_name = user_info_create.company_initial + date
             # ssh 연결 taks는 config/tasks.py task_func에 작성
             if user_info_create.cluster_exist == 0:
                 user_info_create.date = date
@@ -57,7 +60,7 @@ def run_long_task(request):
             print('DELETE')
             # 사용사에 해당하는 DB 생성일자 가져오기
             user_info_delete = User_info.objects.get(company_name=request.user)
-            cluster_name = user_info_delete.company_initial + '_' + user_info_delete.date
+            cluster_name = user_info_delete.company_initial + user_info_delete.date
             user = user_info_delete.company_name
 
             if user_info_delete.cluster_exist == 1:
@@ -83,11 +86,13 @@ def task_status(request, task_id):
     progression = (int(current) / int(total)) * 100  # to display a percentage of progress of the task
     info = task.info.get('info')
     lb_address = task.info.get('lb_address')
+    grafana_address = task.info.get('grafana_address')
     response = {
         'task_id': task_id,
         'state': task.state,
         'progression': progression,
         'info': info,
-        'lb_address': lb_address
+        'lb_address': lb_address,
+        'grafana_address':grafana_address
     }
     return JsonResponse(response, status=200)

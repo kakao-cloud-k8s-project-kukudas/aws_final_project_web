@@ -79,7 +79,7 @@
                   // rerun every 2 seconds
                   setTimeout(function() {
                     updateState(response.task_id)
-                  }, 2000)
+                  }, 3600)
                 })
                 .fail(error => console.log(error))
               }

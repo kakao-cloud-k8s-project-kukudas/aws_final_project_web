@@ -17,16 +17,18 @@ def create_task(self, date, user):
     for i in range(int(l)):
         time.sleep(1)
         self.update_state(state='PROGRESS',
-                          meta={'current': i, 'total': l, 'info':'create'})
+                              meta={'current': i, 'total': l, 'info':'create'})
     # 예시
-    if ssh_connect("/home/ubuntu/a.sh", date, user) == 1:
+    # if ssh_connect("/home/ubuntu/a.sh", date, user) == 1:
+    if ssh_connect("sudo /home/ubuntu/aws_final_project/terraform_script/real.sh", date, user) == 1:
         print('Apply Success #2')
         user_info_create = User_info.objects.get(company_name=user)
         user_info_create.cluster_exist = 1
         lb_address = user_info_create.lb_address
+        grafana_address = user_info_create.grafana_address
         user_info_create.save()
         print('Task completed')
-        return {'current': 100, 'total': 100, 'info': 'create', 'lb_address': lb_address}
+        return {'current': 100, 'total': 100, 'info': 'create', 'lb_address': lb_address, 'grafana_address':grafana_address}
 # 클러스터 삭제
 @shared_task(bind=True)
 def delete_task(self, date, user):
@@ -52,7 +54,7 @@ def ssh_connect(command_str, args=None, args2=None):
     cli = paramiko.SSHClient()
     cli.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 # 호스트명이나 IP 주소 -> EC2 EndPoint 주소가 들어갈 예정
-    server = "ec2-54-250-175-208.ap-northeast-1.compute.amazonaws.com"
+    server = "ec2-35-77-197-219.ap-northeast-1.compute.amazonaws.com"
     user = "root"
 # 암호입력 숨김
     pwd = "test123"
