@@ -18,9 +18,7 @@ def create_task(self, date, user):
         time.sleep(1)
         self.update_state(state='PROGRESS',
                               meta={'current': i, 'total': l, 'info':'create'})
-    # 예시
-    # if ssh_connect("/home/ubuntu/a.sh", date, user) == 1:
-    if ssh_connect("sudo /home/ubuntu/aws_final_project/terraform_script/real.sh", date, user) == 1:
+    if ssh_connect("/root/aws_final_project/terraform_script/real.sh", date, user) == 1:
         print('Apply Success #2')
         user_info_create = User_info.objects.get(company_name=user)
         # db 저장
@@ -55,14 +53,12 @@ def ssh_connect(command_str, args=None, args2=None):
     cli = paramiko.SSHClient()
     cli.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 # 호스트명이나 IP 주소 -> EC2 EndPoint 주소가 들어갈 예정
-    server = "ec2-35-77-197-219.ap-northeast-1.compute.amazonaws.com"
+    server = "192.168.1.201"
     user = "root"
 # 암호입력 숨김
     pwd = "test123"
-# 키파일
-    key = "/Users/yubogeun/PycharmProjects/aws_final_project_web/django-sev.pem"
 # SSH Connect
-    cli.connect(server, port=22, username=user, password=pwd, key_filename=key)
+    cli.connect(server, port=22, username=user, password=pwd)
 # SSH 내의 Shell 실행
     # 인자가 있으면 인자있는걸로 실행: 클러스터 생성
     if args:
