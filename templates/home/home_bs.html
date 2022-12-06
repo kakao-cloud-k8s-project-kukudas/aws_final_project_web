@@ -129,6 +129,18 @@
                                                 <button id="delete_btn" type="submit"  class="btn btn-danger" onclick="return confirm('[경고] 삭제하시겠습니까?');">moodle을 삭제합니다</button>
                                         </div>
                                     </div>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-warning text-white mb-4">
+                                            <div id="moodle" class="card-body">Moodle</div>
+                                                <button id="moodle_btn" type="submit"  class="btn btn-warning" onclick="return confirm('[경고] 삭제하시겠습니까?');">moodle 바로가기</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-6">
+                                        <div class="card bg-info text-white mb-4">
+                                            <div id="monitoring" class="card-body">Monitoring</div>
+                                                <button id="monitoring_btn" type="submit"  class="btn btn-info" onclick="return confirm('[경고] 삭제하시겠습니까?');">kubernetes 상태 확인하기</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         {% endif %}

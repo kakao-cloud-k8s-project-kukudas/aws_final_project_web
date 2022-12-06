@@ -23,6 +23,7 @@ def create_task(self, date, user):
     if ssh_connect("sudo /home/ubuntu/aws_final_project/terraform_script/real.sh", date, user) == 1:
         print('Apply Success #2')
         user_info_create = User_info.objects.get(company_name=user)
+        # db 저장
         user_info_create.cluster_exist = 1
         lb_address = user_info_create.lb_address
         grafana_address = user_info_create.grafana_address
