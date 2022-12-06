@@ -12,4 +12,5 @@ class User_info(models.Model):
     date=models.CharField(max_length=10)
     lb_address = models.CharField(null = True, max_length=100)
     rds_address = models.CharField(null = True, max_length=100)
+    grafana_address = models.CharField(null = True, max_length=150)
     cluster_exist = models.BooleanField(default=False)
