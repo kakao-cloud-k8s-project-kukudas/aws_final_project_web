@@ -54,7 +54,7 @@ def ssh_connect(command_str, args=None, args2=None):
     cli = paramiko.SSHClient()
     cli.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 # 호스트명이나 IP 주소 -> EC2 EndPoint 주소가 들어갈 예정
-    server = "ec2-35-77-197-219.ap-northeast-1.compute.amazonaws.com"
+    server = "ec2-13-231-95-70.ap-northeast-1.compute.amazonaws.com"
     user = "root"
 # 암호입력 숨김
     pwd = "test123"
