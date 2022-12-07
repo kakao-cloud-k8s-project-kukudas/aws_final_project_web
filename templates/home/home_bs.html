@@ -114,9 +114,9 @@
 
                         </ol>
                         {% if login_session %}
+                            <form>
+                                {% csrf_token %}
                             <div class="row">
-                                <form>
-                                    {% csrf_token %}
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-primary text-white mb-4">
                                             <div id="create" class="card-body">생성하기</div>
@@ -132,17 +132,17 @@
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-warning text-white mb-4">
                                             <div id="moodle" class="card-body">Moodle</div>
-                                                <button id="moodle_btn" type="submit"  class="btn btn-warning" onclick="return confirm('[경고] 삭제하시겠습니까?');">moodle 바로가기</button>
+                                                <button id="moodle_btn" type="submit"  class="btn btn-warning">moodle 바로가기</button>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-info text-white mb-4">
                                             <div id="monitoring" class="card-body">Monitoring</div>
-                                                <button id="monitoring_btn" type="submit"  class="btn btn-info" onclick="return confirm('[경고] 삭제하시겠습니까?');">kubernetes 상태 확인하기</button>
+                                                <button id="monitoring_btn" type="submit"  class="btn btn-info">kubernetes 상태 확인하기</button>
                                         </div>
                                     </div>
+                                </div>
                                 </form>
-                            </div>
                         {% endif %}
                     </div>
                 </main>
