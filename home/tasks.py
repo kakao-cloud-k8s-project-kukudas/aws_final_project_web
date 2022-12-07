@@ -37,8 +37,7 @@ def delete_task(self, date, user):
         self.update_state(state='PROGRESS',
                           meta={'current': i, 'total': l, 'info':'delete'})
 
-    # if ssh_connect("/root/aws_final_project/terraform/terraform_destroy.sh", date) == 1:
-    if ssh_connect("/home/ubuntu/b.sh") == 1:
+    if ssh_connect("/root/aws_final_project/terraform_script/terraform_destroy.sh", date) == 1:
         print('Destroy Success #2')
         user_info_delete = User_info.objects.get(company_name=user)
         user_info_delete.cluster_exist = 0
