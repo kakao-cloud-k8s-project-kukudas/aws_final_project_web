@@ -8,9 +8,11 @@ import home.views
 
 urlpatterns = [
     path("home", home.views.home),
+    path("url_moodle", home.views.url_moodle, name="url_moodle"),
+    path("url_grafana", home.views.url_grafana, name="url_grafana"),
     path("account/signup", Account.views.signup),
     path("account/signin", Account.views.signin),
     path("account/signout", Account.views.signout),
     path('run-long-task/', run_long_task, name='run_long_task'),
-    path('task-status/<str:task_id>/', task_status, name='task_status'),
+    path('task-status/<str:task_id>/', task_status, name='task_status')
 ]

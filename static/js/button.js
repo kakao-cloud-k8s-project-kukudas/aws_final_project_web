@@ -55,7 +55,6 @@
                     const tableBody = `<tr id='${response.task_id}'>${data}</tr>`
                     $('tbody').append(tableBody)
                   }
-
                   // response 조건 추가할 것
                   if (response.state == "SUCCESS" && response.info == "create") {
                     document.getElementById("create").innerText = "생성됨";
@@ -69,14 +68,11 @@
                   else if (response.state == "SUCCESS" && response.info == "delete") {
                     document.getElementById("delete").innerText = "삭제됨";
                     document.getElementById("create_btn").removeAttribute("disabled");
-//                    document.getElementById('link').disabled = true;
                   }
                   else if (response.state == "PROGRESS" && response.info == "delete") {
                     document.getElementById("delete").innerText = "삭제중";
                     document.getElementById("delete_btn").setAttribute('disabled', 'disabled');
                   }
-//                  if (response.state == "FAILURE" || response.state == "SUCCESS") {return false}
-                  // rerun every 2 seconds
                   setTimeout(function() {
                     updateState(response.task_id)
                   }, 3600)
