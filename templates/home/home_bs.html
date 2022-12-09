@@ -101,17 +101,8 @@
                         </h1>
                         <ol class="breadcrumb mb-4">
                             {% if login_session %}
-                                <li class="breadcrumb-item active">Moodle:&nbsp;</li>
-                                {% if moodle_addr %}
-                                    <a href="{{moodle_addr}}" id="link">그룹웨어 접속</a>
-                                    <a href="{{grafana_addr}}" id="grafana_address">모니터링 접속</a>
-                                {% else %}
-                                    <p>클러스터를 생성해주세요</p>
-                                {% endif %}
-                            {% else %}
                                 <li class="breadcrumb-item active">Moodle</li>
                             {% endif %}
-
                         </ol>
                         {% if login_session %}
                             <form>
@@ -132,13 +123,13 @@
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-warning text-white mb-4">
                                             <div id="moodle" class="card-body">Moodle</div>
-                                                <button id="moodle_btn" type="submit"  class="btn btn-warning">moodle 바로가기</button>
+                                                <button id="moodle_btn" type="button"  class="btn btn-warning" onclick="location.href='{% url 'url_moodle' %}'">moodle 바로가기</button>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-md-6">
                                         <div class="card bg-info text-white mb-4">
                                             <div id="monitoring" class="card-body">Monitoring</div>
-                                                <button id="monitoring_btn" type="submit"  class="btn btn-info">kubernetes 상태 확인하기</button>
+                                                <button id="monitoring_btn" type="button"  class="btn btn-info" onclick="location.href='{% url 'url_grafana' %}'">kubernetes 상태 확인하기</button>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +145,7 @@
                         <tr>
                           <th>Task ID</th>
                           <th>Task state</th>
-                          <th>Task percentage %</th>
+                          <th>Task progress %</th>
                           <th>Task info</th>
                         </tr>
                       </thead>

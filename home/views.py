@@ -22,13 +22,6 @@ def home(request):
     else:
         context['login_session']=True
     # 클러스터가 이미 있는 경우 DB 주소 주기
-    if request.user.is_authenticated:
-        moodle_addr = User_info.objects.get(company_name=request.user).lb_address
-        grafana_addr = User_info.objects.get(company_name=request.user).grafana_address
-        print(moodle_addr)
-        print(grafana_addr)
-        context['moodle_addr'] = moodle_addr
-        context['grafana_addr'] = grafana_addr
 
     return render(request, 'home/home_bs.html', context)
 
@@ -70,29 +63,37 @@ def run_long_task(request):
             else:
                 print("삭제 할 클러스터가 없습니다.")  # <-- 앞단에서 설명 창이 있음 좋겠음
 
-
 def task_status(request, task_id):
     task = AsyncResult(task_id)
     if task.state == 'FAILURE' or task.state == 'PENDING':
         response = {
             'task_id': task_id,
             'state': task.state,
-            'progression': "None",
+            'progression': "PENDING",
             'info': str(task.info)
         }
         return JsonResponse(response, status=200)
-    current = task.info.get('current', 0)
-    total = task.info.get('total', 1)
-    progression = (int(current) / int(total)) * 100  # to display a percentage of progress of the task
+    progression = task.info.get('progress')
     info = task.info.get('info')
-    lb_address = task.info.get('lb_address')
-    grafana_address = task.info.get('grafana_address')
     response = {
         'task_id': task_id,
         'state': task.state,
         'progression': progression,
-        'info': info,
-        'lb_address': lb_address,
-        'grafana_address':grafana_address
+        'info': info
     }
     return JsonResponse(response, status=200)
+
+def url_moodle(request):
+    print("GO MOODLE")
+    if request.user.is_authenticated:
+        moodle_addr = "http://" + User_info.objects.get(company_name=request.user).lb_address
+        print(moodle_addr)
+
+        return redirect(moodle_addr)
+
+def url_grafana(request):
+    print("GO GRAFANA")
+    if request.user.is_authenticated:
+        grafana_addr = "http://" + User_info.objects.get(company_name=request.user).grafana_address
+        print(grafana_addr)
+        return redirect(grafana_addr)
