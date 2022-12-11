@@ -26,6 +26,7 @@
 </div>
 <div align=center>
 	<img src="https://img.shields.io/badge/PyCharm-000000?style=flat&logo=PyCharm&logoColor=white" />
+	<img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat&logo=VisualStudioCode&logoColor=white" />
 	<img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white" />
 	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
 	<br>
@@ -36,7 +37,7 @@
 <img width="817" alt="스크린샷 2022-12-11 오후 2 36 13" src="https://user-images.githubusercontent.com/70618223/206888249-73de9d1e-55eb-49bd-a5db-eb519ac8cbe0.png">
 
 ## Work Items
-|Work Items||||
+|---|---|---|---|
 |---|---|---|---|
 |클러스터 생성|클러스터 삭제|로그인|로그아웃|
 |회원가입|DB Schema|Web Form|DashBoard Page|
