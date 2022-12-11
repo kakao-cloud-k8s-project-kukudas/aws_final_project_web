@@ -1,3 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=waving&color=FFA07A&height=300&section=header&text=Team%20Kukudas%20🐱&fontSize=90&animation=fadeIn&fontAlignY=38&desc=Kakao%20CloudSchool%20Engineer%20Class%201st%20term&fontColor=FFFFFF&descAlignY=50&descAlign=53)
+
 <div align=center>
 	<h1> 프로젝트 (Django Web Server) <h>
 	<h3> 🐤 교육기관용 그룹웨어 구축 및 제공 🐤 </h3>
