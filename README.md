@@ -1,6 +1,7 @@
-# 프로젝트 (Django Web Server)
-
-> 🐤 교육기관용 그룹웨어 구축 및 제공 🐤
+<div align=center>
+	<h1> 프로젝트 (Django Web Server) <h>
+	<h3> 🐤 교육기관용 그룹웨어 구축 및 제공 🐤 </h3>
+</div>
 
 <div align=center>
 	<h3>📚 Tech Stack 📚</h3>
@@ -14,9 +15,19 @@
   <br>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white" />
   <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=white" />
-
 </div>
-  
+<br>
+<div align=center>
+	<p>🛠 Tools 🛠</p>
+</div>
+<div align=center>
+	<img src="https://img.shields.io/badge/PyCharm-000000?style=flat&logo=PyCharm&logoColor=white" />
+	<img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=AmazonAWS&logoColor=white" />
+	<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" />
+	<br>
+</div>
+<br>
+
 ## Develop Period
 2022.11.07 - 2022.12.13
 
