@@ -6,6 +6,8 @@
 </div>
 
 <div align=center>
+	<h3>🗓 Develop Period 🗓</h3>
+	<p> 2022.11.07 - 2022.12.13 </p>
 	<h3>📚 Tech Stack 📚</h3>
 	<p>✨ Platforms & Languages ✨</p>
 </div>
@@ -29,25 +31,16 @@
 	<br>
 </div>
 <br>
+		
+## PAGE LIST (Sign in & Sign up & DashBoard)
+<img width="817" alt="스크린샷 2022-12-11 오후 2 36 13" src="https://user-images.githubusercontent.com/70618223/206888249-73de9d1e-55eb-49bd-a5db-eb519ac8cbe0.png">
 
-## Develop Period
-2022.11.07 - 2022.12.13
-
-## PAGE LIST
-- Sign in
-- Sign up
-- DashBoard
-
-## Work Item
-- 클러스터
-- 로그인
-- 회원가입
-- DB Schema
-- Web Form
-- DashBoard (Moddle, Grafana Monitoring)
-- AWS RDS 구성
-- AWS 인스턴스 배포
-- AWS EKS를 통한 WEB 배포
+## Work Items
+|Work Items||||
+|---|---|---|---|
+|클러스터 생성|클러스터 삭제|로그인|로그아웃|
+|회원가입|DB Schema|Web Form|DashBoard Page|
+|Moddle|RDS|EC2 instance|Grafana Monitoring|
 
 ## Main Functions
 - Celery (비동기, 요청 응답, 백그라운드 테스크)
@@ -55,4 +48,4 @@
 ## Structural Diagram
 
 ## ER Diagram
-<img width="636" alt="image" src="https://user-images.githubusercontent.com/70618223/203917608-0240a4b6-f237-4997-a1e1-8aa9dc357e1f.png">
+![ER Diagram](https://user-images.githubusercontent.com/70618223/206888117-5240f286-2872-44b3-bcfb-84aa7d44512b.png)
