@@ -2,11 +2,12 @@
 
 > 🐤 교육기관용 그룹웨어 구축 및 제공 🐤
 
-## API 명세서 [링크 제공 예정]
+## Platforms & Lauguages
+
 
 ## PAGE LIST
-- 회원가입
-- 로그인
+- Sign in
+- Sign up
 - DashBoard
 
 ## Work Item
@@ -20,10 +21,10 @@
 - AWS 인스턴스 배포
 - AWS EKS를 통한 WEB 배포
 
-## 부가 기능
-- celery 적용 (요청 응답, 백그라운드 테스크)
+## Main Functions
+- Celery (비동기, 요청 응답, 백그라운드 테스크)
 
-## DB Schema
+## Structural Diagram
+
+## ER Diagram
 <img width="636" alt="image" src="https://user-images.githubusercontent.com/70618223/203917608-0240a4b6-f237-4997-a1e1-8aa9dc357e1f.png">
-
-https://startbootstrap.com/previews/sb-admin
